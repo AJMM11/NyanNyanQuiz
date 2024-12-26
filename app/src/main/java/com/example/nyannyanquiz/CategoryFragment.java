@@ -1,12 +1,17 @@
 package com.example.nyannyanquiz;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.material.card.MaterialCardView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,6 +42,43 @@ public class CategoryFragment extends Fragment {
      * @return A new instance of fragment CategoryFragment.
      */
     // TODO: Rename and change types and number of parameters
+    private MaterialCardView easycard, mediumcard, difficultcard;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_category, container, false);
+
+        easycard = view.findViewById(R.id.easyCard);
+        difficultcard = view.findViewById(R.id.difficultCard);
+        mediumcard = view.findViewById(R.id.mediumCard);
+
+        easycard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), QuizActivity.class));
+                getActivity().finish();
+            }
+        });
+
+        mediumcard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), QuizActivity.class));
+                getActivity().finish();
+            }
+        });
+
+        difficultcard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), QuizActivity.class));
+                getActivity().finish();
+            }
+        });
+
+        return view;
+    }
     public static CategoryFragment newInstance(String param1, String param2) {
         CategoryFragment fragment = new CategoryFragment();
         Bundle args = new Bundle();
@@ -55,10 +97,4 @@ public class CategoryFragment extends Fragment {
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_category, container, false);
-    }
 }

@@ -1,5 +1,7 @@
 package com.example.nyannyanquiz;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -7,6 +9,8 @@ import android.view.Menu;
 import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -29,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout mainFrame;
 
     private BottomNavigationView bottomNavigationView;
+
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener=
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -78,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
        // NavigationUI.setupWithNavController(navigationView, navController);
 
         setFragment(new CategoryFragment());
+
+
     }
 
 
@@ -88,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
 
     private void setFragment(Fragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
