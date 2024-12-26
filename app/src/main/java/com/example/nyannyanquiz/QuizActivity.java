@@ -42,10 +42,11 @@ public class QuizActivity extends AppCompatActivity {
     private TextView option3TextView;
     private TextView option4TextView;
     private int score=0;
-
+    String difficulty;
     private void navigateToResultActivity() {
         Intent intent = new Intent(QuizActivity.this, ResultActivity.class);
         intent.putExtra("score", score); // Pass the score to ResultActivity
+        intent.putExtra("difficulty", difficulty);
         startActivity(intent);
     }
     public void setUp(String dif) {
@@ -232,6 +233,7 @@ public class QuizActivity extends AppCompatActivity {
 
         }else{
             System.out.println("El score es " + score);
+
             navigateToResultActivity();
         }
     }
@@ -239,7 +241,7 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        String difficulty = getIntent().getStringExtra("difficulty");
+        difficulty = getIntent().getStringExtra("difficulty");
         questionTextView = findViewById(R.id.quizText);
         option1TextView = findViewById(R.id.aanswer);
         option2TextView = findViewById(R.id.banswer);

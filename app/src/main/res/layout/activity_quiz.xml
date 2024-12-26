@@ -42,7 +42,7 @@
             android:layout_gravity="center"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="150dp">
+            android:layout_height="200dp">
 
             <TextView
                 android:id="@+id/quizText"
