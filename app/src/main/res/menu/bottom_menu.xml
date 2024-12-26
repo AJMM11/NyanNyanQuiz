@@ -3,14 +3,23 @@
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_home"
-        android:title="Home" />
+        android:title="Home"
+        android:titleTextColor="@android:color/black"
+        android:iconTint="@android:color/black"
+        />
     <item
         android:id="@+id/nav_account"
         android:icon="@drawable/ic_account"
-        android:title="My Account" />
+        android:title="My Account"
+        android:titleTextColor="@android:color/black"
+        android:iconTint="@android:color/black"
+       />
     <item
         android:id="@+id/nav_leaderboard"
         android:icon="@drawable/ic_leaderboard"
-        android:title="Leaderboard"/>
+        android:title="Leaderboard"
+        android:titleTextColor="@android:color/black"
+        android:iconTint="@android:color/black"
+        />
 
 </menu>

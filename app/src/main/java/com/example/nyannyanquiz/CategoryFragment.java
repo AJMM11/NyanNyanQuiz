@@ -56,7 +56,9 @@ public class CategoryFragment extends Fragment {
         easycard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), QuizActivity.class));
+                Intent intent = new Intent(getActivity(), QuizActivity.class);
+                intent.putExtra("difficulty", "easy");
+                startActivity(intent);
                 getActivity().finish();
             }
         });
@@ -64,7 +66,9 @@ public class CategoryFragment extends Fragment {
         mediumcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), QuizActivity.class));
+                Intent intent = new Intent(getActivity(), QuizActivity.class);
+                intent.putExtra("difficulty", "medium");
+                startActivity(intent);
                 getActivity().finish();
             }
         });
@@ -72,7 +76,10 @@ public class CategoryFragment extends Fragment {
         difficultcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), QuizActivity.class));
+                Intent intent = new Intent(getActivity(), QuizActivity.class);
+                intent.putExtra("difficulty", "hard");
+                startActivity(intent);
+
                 getActivity().finish();
             }
         });

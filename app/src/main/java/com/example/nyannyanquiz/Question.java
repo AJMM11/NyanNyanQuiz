@@ -1,10 +1,12 @@
 package com.example.nyannyanquiz;
 
+import java.util.List;
+
 public class Question {
     private String type, difficulty, category;
     private String question;
-    private String correctAnswer;
-    private String[] incorrectAnswer;
+    private String correct_answer;
+    private List<String> incorrect_answers;
 
     // Getter and Setter for 'type'
     public String getType() {
@@ -44,19 +46,19 @@ public class Question {
 
     // Getter and Setter for 'correctAnswer'
     public String getCorrectAnswer() {
-        return correctAnswer;
+        return correct_answer;
     }
 
     public void setCorrectAnswer(String correctAnswer) {
-        this.correctAnswer = correctAnswer;
+        this.correct_answer = correctAnswer;
     }
 
     // Getter and Setter for 'incorrectAnswer'
-    public String[] getIncorrectAnswer() {
-        return incorrectAnswer;
+    public List<String> getIncorrectAnswer() {
+        return incorrect_answers;
     }
 
-    public void setIncorrectAnswer(String[] incorrectAnswer) {
-        this.incorrectAnswer = incorrectAnswer;
+    public void setIncorrectAnswer(List<String> incorrectAnswer) {
+        this.incorrect_answers = incorrectAnswer;
     }
 }
