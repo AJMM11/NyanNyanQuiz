@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_settings">Ajustes</string>
+    <string name="menu_gallery">Galería</string>
+    <string name="next">Siguiente</string>
+    <string name="previous">Atrás</string>
+    <string name="leader_score_placeholder">Puntuación total: 1000</string>
+    <string name="result_info">Información del resultado</string>
+    <string name="score">Puntuación</string>
+    <string name="correct">Correctas</string>
+    <string name="wrong">Incorrectas</string>
+    <string name="return_to_homepage">Volver a la página principal</string>
+    <string name="leaderboard">Clasificaciones</string>
+    <string name="my_account">Mi cuenta</string>
+    <string name="easy_quiz">Test Fácil</string>
+    <string name="medium_quiz">Test Intermedio</string>
+    <string name="difficult_quiz">Test Difícil</string>
+    <string name="correct_test">Correcta!</string>
+    <string name="incorrect">Incorrecto!</string>
+</resources>

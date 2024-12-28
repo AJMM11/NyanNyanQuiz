@@ -1,25 +1,25 @@
 <resources>
-    <string name="app_name">NyanNyanQuiz</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
+    <string name="app_name" translatable="false">NyanNyanQuiz</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="nav_header_title" translatable="false">Android Studio</string>
+    <string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
+    <string name="nav_header_desc" translatable="false">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
+    <string name="menu_home" translatable="false">Home</string>
     <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="nyan_nyan_quiz">NyanNyanQUIZ</string>
+    <string name="menu_slideshow" translatable="false">Slideshow</string>
+    <string name="nyan_nyan_quiz" translatable="false">NyanNyanQUIZ</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="lorem_ipsum">
+    <string name="lorem_ipsum" translatable="false">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
         dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
@@ -55,6 +55,22 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+
+    <string name="user_image" translatable="false">User Image</string>
+    <string name="user_name_placeholder" translatable="false">User Name</string>
+    <string name="leader_score_placeholder">Total score: 1000</string>
+    <string name="result_info">Result Info</string>
+    <string name="score">Score</string>
+    <string name="correct">Correct</string>
+    <string name="wrong">Wrong</string>
+    <string name="return_to_homepage">Return to Homepage</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="my_account">My Account</string>
+    <string name="easy_quiz">Easy Quiz</string>
+    <string name="medium_quiz">Medium Quiz</string>
+    <string name="difficult_quiz">Difficult Quiz</string>
+    <string name="correct_test">Correct!</string>
+    <string name="incorrect">Incorrect!</string>
 
 
 </resources>

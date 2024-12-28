@@ -34,7 +34,7 @@
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:textSize="17sp"
-                        android:text="Easy Quiz"
+                        android:text="@string/easy_quiz"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -57,7 +57,7 @@
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:textSize="17sp"
-                        android:text="Medium Quiz"
+                        android:text="@string/medium_quiz"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -80,7 +80,7 @@
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:textSize="17sp"
-                        android:text="Difficult Quiz"
+                        android:text="@string/difficult_quiz"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
