@@ -31,6 +31,7 @@ public class QuizActivity extends AppCompatActivity {
     private TextView option4TextView;
     private int score = 0;
     private String difficulty;
+    private String genre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class QuizActivity extends AppCompatActivity {
 
         // Obtener dificultad del intent
         difficulty = getIntent().getStringExtra("difficulty");
+        genre = getIntent().getStringExtra("genre");
 
         // Vincular vistas
         questionTextView = findViewById(R.id.quizText);
