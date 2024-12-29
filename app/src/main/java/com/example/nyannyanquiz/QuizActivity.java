@@ -129,14 +129,32 @@ public class QuizActivity extends AppCompatActivity {
                     option4TextView.setText(formatText(answers.get(3)));
                 } else {
                     // Handle the error if the translation API call was unsuccessful
-                    Toast.makeText(QuizActivity.this, "Translation failed: " + response.message(), Toast.LENGTH_SHORT).show();
+                    try{
+                        new AlertDialog.Builder(QuizActivity.this)
+                                .setTitle("Failed to fetch questions")
+                                .setMessage("Fetching failed: " + response.errorBody().string())
+                                .setPositiveButton(android.R.string.ok, (dialog, which) -> dialog.dismiss())
+                                .show();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+
                 }
             }
 
             @Override
             public void onFailure(Call<List<TranslateResponse>> call, Throwable t) {
                 // Handle the failure
-                Toast.makeText(QuizActivity.this, "Translation request failed: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                try{
+                    new AlertDialog.Builder(QuizActivity.this)
+                            .setTitle("Failed to fetch questions")
+                            .setMessage("Fetching failed: " + t.getMessage())
+                            .setPositiveButton(android.R.string.ok, (dialog, which) -> dialog.dismiss())
+                            .show();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }

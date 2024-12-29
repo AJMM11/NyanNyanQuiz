@@ -106,6 +106,7 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         addUser("sampleUser1", "password1", 10);
         addUser("sampleUser2", "password2", 20);
         addUser("sampleUser3", "password3", 30);
+        addUser("yo","1234",0);
     }
     void deleteAllData(){
         SQLiteDatabase db = this.getWritableDatabase();
