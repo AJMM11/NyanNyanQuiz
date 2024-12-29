@@ -5,22 +5,27 @@ import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nyannyanquiz.databinding.ActivityQuizBinding;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class QuizActivity extends AppCompatActivity {
-
+    private TranslatorService transService;
     private ActivityQuizBinding binding;
     private List<Question> questions;
 
@@ -29,8 +34,13 @@ public class QuizActivity extends AppCompatActivity {
     private TextView option2TextView;
     private TextView option3TextView;
     private TextView option4TextView;
+
+    private String ans1,ans2,ans3,ans4;
     private int score = 0;
     private String difficulty;
+    private String language;
+
+    private String translatedText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +57,14 @@ public class QuizActivity extends AppCompatActivity {
         option3TextView = findViewById(R.id.canswer);
         option4TextView = findViewById(R.id.danswer);
 
+        Locale currentLocale = Locale.getDefault();
+        language = currentLocale.getLanguage();
+
+        System.out.println("Language: " + language);
+        if(language.equals("es")) {
+            transService = RetrofitClient.getInstance().create(TranslatorService.class);
+
+        }
         // Configurar preguntas
         setUp(difficulty);
     }
@@ -71,13 +89,90 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
     }
+    private void translateAnswers(List<String> answers) {
+        // Create a list of TranslateRequest objects for each answer
+        List<TranslateRequest> translateRequests = new ArrayList<>();
+        for (String answer : answers) {
+            translateRequests.add(new TranslateRequest(answer));  // Assuming TranslateRequest is a model for the API
+        }
+
+        // Call the translate API (assuming you are translating to Spanish, change the language code as needed)
+        transService.translateText(translateRequests).enqueue(new Callback<List<TranslateResponse>>() {
+            @Override
+            public void onResponse(Call<List<TranslateResponse>> call, Response<List<TranslateResponse>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<TranslateResponse> translatedResponses = response.body();
+
+                    // Assuming the API returns translations in the order they were sent
+                    for (int i = 0; i < translatedResponses.size(); i++) {
+                        String translatedText = translatedResponses.get(i).getTranslations().get(0).getText();
+                        answers.set(i, translatedText);  // Update the original answers list with translated text
+                    }
+
+
+                    option1TextView.setText(formatText(answers.get(0)));
+                    option2TextView.setText(formatText(answers.get(1)));
+                    option3TextView.setText(formatText(answers.get(2)));
+                    option4TextView.setText(formatText(answers.get(3)));
+                } else {
+                    // Handle the error if the translation API call was unsuccessful
+                    Toast.makeText(QuizActivity.this, "Translation failed: " + response.message(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<TranslateResponse>> call, Throwable t) {
+                // Handle the failure
+                Toast.makeText(QuizActivity.this, "Translation request failed: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     private void displayQuestion(int index) {
         if (questions != null && !questions.isEmpty() && index < questions.size()) {
             Question question = questions.get(index);
 
+            if(language.equals("es"))
+            {
+
+                String textToTranslate = formatText(question.getQuestion());
+                // Set up the request object
+                TranslateRequest request = new TranslateRequest(textToTranslate);
+
+                transService.translateText(Arrays.asList(request)).enqueue(new Callback<List<TranslateResponse>>() {
+                    @Override
+                    public void onResponse(Call<List<TranslateResponse>> call, Response<List<TranslateResponse>> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            // Get the translated text
+                            translatedText = response.body().get(0).getTranslations().get(0).getText();
+                            questionTextView.setText(formatText(translatedText));
+                            //Toast.makeText(QuizActivity.this, "Translated Text: " + translatedText, Toast.LENGTH_LONG).show();
+                        } else {
+                            try{
+                                System.err.println(response.errorBody().string());
+                                Toast.makeText(QuizActivity.this, "Error: " + response.errorBody().string(), Toast.LENGTH_SHORT).show();
+
+                            }
+                            catch(Exception e){
+                                Log.e("Error", e.getMessage());
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<TranslateResponse>> call, Throwable t) {
+                        Toast.makeText(QuizActivity.this, "Translation failed: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+            }else{
+                questionTextView.setText(formatText(question.getQuestion()));
+            }
+
+
             // Formatear y mostrar la pregunta
-            questionTextView.setText(formatText(question.getQuestion()));
+
             questionTextView.setBackgroundColor(getResources().getColor(android.R.color.white));
 
             // Combinar y barajar respuestas
@@ -87,6 +182,7 @@ public class QuizActivity extends AppCompatActivity {
             }
             answers.add(question.getCorrectAnswer());
             Collections.shuffle(answers);
+
 
             // Asignar texto formateado a cada opción
             option1TextView.setText(formatText(answers.get(0)));
