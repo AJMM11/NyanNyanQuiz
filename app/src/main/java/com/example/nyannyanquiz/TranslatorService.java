@@ -10,7 +10,8 @@ import retrofit2.http.Body;
 public interface TranslatorService {
 
     @Headers({
-            "Ocp-Apim-Subscription-Key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            //Replace with your own azure key and region
+            "Ocp-Apim-Subscription-Key:xxxxxxx,
             "Ocp-Apim-Subscription-Region: westeurope",// Replace with your subscription key
             "Content-Type: application/json"
     })

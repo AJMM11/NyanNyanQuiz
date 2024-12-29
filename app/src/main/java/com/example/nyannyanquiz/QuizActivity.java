@@ -1,5 +1,6 @@
 package com.example.nyannyanquiz;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -79,6 +80,18 @@ public class QuizActivity extends AppCompatActivity {
                     questions = response.body().getResults();
                     displayQuestion(0);
                 } else {
+                    try{
+                        new AlertDialog.Builder(QuizActivity.this)
+                                .setTitle("Failed to fetch questions")
+                                .setMessage("Fetching failed: " + response.errorBody().string())
+                                .setPositiveButton(android.R.string.ok, (dialog, which) -> dialog.dismiss())
+                                .show();
+
+
+                    }
+                    catch(Exception e){
+                        Log.e("Error", e.getMessage());
+                    }
                     System.err.println("Failed to fetch questions");
                 }
             }
@@ -149,8 +162,12 @@ public class QuizActivity extends AppCompatActivity {
                             //Toast.makeText(QuizActivity.this, "Translated Text: " + translatedText, Toast.LENGTH_LONG).show();
                         } else {
                             try{
-                                System.err.println(response.errorBody().string());
-                                Toast.makeText(QuizActivity.this, "Error: " + response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                                new AlertDialog.Builder(QuizActivity.this)
+                                        .setTitle("Translation Failed")
+                                        .setMessage("Translation failed: " + response.errorBody().string())
+                                        .setPositiveButton(android.R.string.ok, (dialog, which) -> dialog.dismiss())
+                                        .show();
+
 
                             }
                             catch(Exception e){
@@ -162,7 +179,11 @@ public class QuizActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<TranslateResponse>> call, Throwable t) {
-                        Toast.makeText(QuizActivity.this, "Translation failed: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                        new AlertDialog.Builder(QuizActivity.this)
+                                .setTitle("Translation Failed")
+                                .setMessage("Translation failed: " + t.getMessage())
+                                .setPositiveButton(android.R.string.ok, (dialog, which) -> dialog.dismiss())
+                                .show();
                     }
                 });
 
