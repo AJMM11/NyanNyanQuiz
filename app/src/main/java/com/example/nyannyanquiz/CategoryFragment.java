@@ -1,5 +1,7 @@
 package com.example.nyannyanquiz;
 
+import static android.content.Intent.getIntent;
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -47,36 +49,45 @@ public class CategoryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        String valor = "";
+        if (getArguments() != null) valor = getArguments().getString("genero");
         View view = inflater.inflate(R.layout.fragment_category, container, false);
 
         easycard = view.findViewById(R.id.easyCard);
         difficultcard = view.findViewById(R.id.difficultCard);
         mediumcard = view.findViewById(R.id.mediumCard);
 
+        String finalValor1 = valor;
         easycard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), QuizActivity.class);
+                intent.putExtra("generoA", finalValor1);
                 intent.putExtra("difficulty", "easy");
                 startActivity(intent);
                 getActivity().finish();
             }
         });
 
+        String finalValor2 = valor;
         mediumcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), QuizActivity.class);
+                intent.putExtra("generoA", finalValor2);
                 intent.putExtra("difficulty", "medium");
                 startActivity(intent);
                 getActivity().finish();
             }
         });
 
+        String finalValor = valor;
         difficultcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), QuizActivity.class);
+                intent.putExtra("generoA", finalValor);
                 intent.putExtra("difficulty", "hard");
                 startActivity(intent);
 

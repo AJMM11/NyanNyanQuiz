@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     if (item.getItemId() == R.id.nav_home) {
                         // Handle the Home case
-                        setFragment(new CategoryFragment());
+                        setFragment(new GenreFragment());
                         return true;
                     } else if (item.getItemId() == R.id.nav_leaderboard) {
                         // Handle the Leaderboard case
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
        // NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
        // NavigationUI.setupWithNavController(navigationView, navController);
 
-        setFragment(new CategoryFragment());
+        setFragment(new GenreFragment());
 
 
     }

@@ -25,4 +25,17 @@
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/fragmentGenre"
+        android:name="com.example.nyannyanquiz.GenreFragment">
+        <action
+            android:id="@+id/action_fragmentGenre_to_fragmentCategory"
+            app:destination="@id/fragmentCategory" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentCategory"
+        android:name="com.example.nyannyanquiz.CategoryFragment" />
+
 </navigation>
