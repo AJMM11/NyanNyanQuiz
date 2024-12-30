@@ -3,6 +3,7 @@ package com.example.nyannyanquiz;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -50,6 +51,28 @@ public class ResultActivity extends AppCompatActivity {
 
         TextView incorrectTextView = findViewById(R.id.wrongScore);
         incorrectTextView.setText(String.valueOf(10-score));
+
+        MyDatabaseHelper myDB = new MyDatabaseHelper(this);
+        if(myDB.isDatabaseEmpty())
+        {
+            myDB.insertSampleData();
+        }
+        Cursor cursor = myDB.readAllData();
+
+        if (cursor.moveToFirst()) {
+            do {
+                String id = cursor.getString(0); // _id
+                String username = cursor.getString(1); // user_username
+                int scoreUser = cursor.getInt(3);
+                if (username.equals("Yo")) { // Verifica que es el usuario "Yo"
+                    myDB.updateData(id, "Yo", "contraseña123", scoreUser+score*multiplier); // Actualiza el puntaje
+                    break;
+                }
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+
 
 
         TextView home = findViewById(R.id.resultTextview);

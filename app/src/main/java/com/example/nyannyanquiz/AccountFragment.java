@@ -1,5 +1,6 @@
 package com.example.nyannyanquiz;
 
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,16 +51,39 @@ public class AccountFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_account, container, false);
+        View view= inflater.inflate(R.layout.fragment_account, container, false);
+        TextView leaderScoreTextView = view.findViewById(R.id.leaderScore);
+        try{
+            MyDatabaseHelper myDB = new MyDatabaseHelper(this.getContext());
+            if(myDB.isDatabaseEmpty())
+            {
+                myDB.insertSampleData();
+            }
+
+            Cursor cursor = myDB.readAllData();
+
+            if (cursor.moveToFirst()) {
+                do {
+                    String id = cursor.getString(0); // _id
+                    String username = cursor.getString(1); // user_username
+                    int scoreUser = cursor.getInt(3);
+                    if (username.equals("Yo")) { // Verifica que es el usuario "Yo"
+                        leaderScoreTextView.setText(String.valueOf(scoreUser));
+                        break;
+                    }
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return view;
     }
 }
