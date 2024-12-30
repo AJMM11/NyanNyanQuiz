@@ -11,7 +11,7 @@ public interface TranslatorService {
 
     @Headers({
             //Replace with your own azure key and region
-            "Ocp-Apim-Subscription-Key:xxxx",
+            "Ocp-Apim-Subscription-Key:xxxxx",
             "Ocp-Apim-Subscription-Region: westeurope",// Replace with your subscription key
             "Content-Type: application/json"
     })
