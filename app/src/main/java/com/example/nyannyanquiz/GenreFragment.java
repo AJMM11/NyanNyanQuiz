@@ -78,10 +78,15 @@ public class GenreFragment extends Fragment {
         // Agregar el listener para manejar los clics en los elementos del GridView
         genreView.setOnItemClickListener((adapterView, view1, position, id) -> {
             String selectedGenre = genreList.get(position).getName(); // Obtener el nombre del género seleccionado
-            Intent intent = new Intent(getActivity(), CategoryFragment.class); // Ir a la siguiente actividad
-            intent.putExtra("genre", selectedGenre); // Pasar el género seleccionado
-            startActivity(intent);
-            getActivity().finish();
+            Fragment fragmentoDestino = new CategoryFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("genero", selectedGenre); // Cambia "clave" y "valor" según tus datos
+            fragmentoDestino.setArguments(bundle);
+
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.main_frame, fragmentoDestino)
+                    .addToBackStack(null)
+                    .commit();
         });
 
         return view;
@@ -94,5 +99,9 @@ public class GenreFragment extends Fragment {
         genreList.add(new GenreModel("2", "History"));
         genreList.add(new GenreModel("3", "Computers"));
         genreList.add(new GenreModel("4", "General Knowledge"));
+    }
+
+    public interface FragmentCommunication {
+        void goToQuiz(String data);
     }
 }

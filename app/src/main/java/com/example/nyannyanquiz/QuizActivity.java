@@ -40,7 +40,11 @@ public class QuizActivity extends AppCompatActivity {
 
         // Obtener dificultad del intent
         difficulty = getIntent().getStringExtra("difficulty");
-        genre = getIntent().getStringExtra("genre");
+        Intent intent = getIntent();
+        String valor = null;
+        if (intent != null) {
+            valor = intent.getStringExtra("generoA");
+        }
 
         // Vincular vistas
         questionTextView = findViewById(R.id.quizText);
@@ -50,12 +54,30 @@ public class QuizActivity extends AppCompatActivity {
         option4TextView = findViewById(R.id.danswer);
 
         // Configurar preguntas
-        setUp(difficulty);
+        setUp(difficulty, valor);
     }
 
-    private void setUp(String difficulty) {
+    private void setUp(String difficulty, String valor) {
+        int categoryNumber;
+
+        switch (valor) {
+            case "Computers":
+                categoryNumber = 18;
+                break;
+            case "History":
+                categoryNumber = 23;
+                break;
+            case "General Knowledge":
+                categoryNumber = 9;
+                break;
+            case "Anime & Manga":
+                categoryNumber = 31;
+                break;
+            default:
+                throw new IllegalArgumentException("Valor no válido: " + valor);
+        }
         QuizApi quizApi = ApiClient.getRetrofitInstance().create(QuizApi.class);
-        Call<ApiResponse> call = quizApi.getQuestions(10, 31, difficulty, "multiple");
+        Call<ApiResponse> call = quizApi.getQuestions(10, categoryNumber, difficulty, "multiple");
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
