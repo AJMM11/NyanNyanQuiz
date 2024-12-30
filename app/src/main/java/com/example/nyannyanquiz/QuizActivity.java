@@ -82,15 +82,19 @@ public class QuizActivity extends AppCompatActivity {
 
         switch (valor) {
             case "Computers":
+            case "Ordenadores":
                 categoryNumber = 18;
                 break;
             case "History":
+            case "Historia":
                 categoryNumber = 23;
                 break;
             case "General Knowledge":
+            case "Conocimiento General":
                 categoryNumber = 9;
                 break;
             case "Anime & Manga":
+            case "Anime Y Manga":
                 categoryNumber = 31;
                 break;
             default:

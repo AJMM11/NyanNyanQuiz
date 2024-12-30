@@ -7,7 +7,7 @@
     <string name="nav_header_desc" translatable="false">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home" translatable="false">Home</string>
+    <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow" translatable="false">Slideshow</string>
     <string name="nyan_nyan_quiz" translatable="false">NyanNyanQUIZ</string>
@@ -71,6 +71,10 @@
     <string name="difficult_quiz">Difficult Quiz</string>
     <string name="correct_test">Correct!</string>
     <string name="incorrect">Incorrect!</string>
+    <string name="history">History</string>
+    <string name="generalknowledge">General Knowledge</string>
+    <string name="ordenadores">Computers</string>
+    <string name="anime"><![CDATA[Anime & Manga]]></string>
 
 
 </resources>

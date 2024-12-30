@@ -95,10 +95,10 @@ public class GenreFragment extends Fragment {
 
     private void loadGenres() {
         genreList.clear();
-        genreList.add(new GenreModel("1", "Anime & Manga"));
-        genreList.add(new GenreModel("2", "History"));
-        genreList.add(new GenreModel("3", "Computers"));
-        genreList.add(new GenreModel("4", "General Knowledge"));
+        genreList.add(new GenreModel("1", getString(R.string.anime)));
+        genreList.add(new GenreModel("2", getString(R.string.history)));
+        genreList.add(new GenreModel("3", getString(R.string.ordenadores)));
+        genreList.add(new GenreModel("4", getString(R.string.generalknowledge)));
     }
 
     public interface FragmentCommunication {
